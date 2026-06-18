@@ -267,7 +267,33 @@ body {
 }
 @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
 
-.suggestions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.suggest-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+.shuffle {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  padding: 9px 16px;
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.shuffle:hover { background: var(--accent); color: var(--cream); }
+.shuffle.spin { animation: shuffle-spin 0.4s ease; }
+@keyframes shuffle-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.suggestions { display: flex; flex-wrap: wrap; gap: 10px; }
 .chip {
   font-family: var(--mono);
   font-size: 12px;
