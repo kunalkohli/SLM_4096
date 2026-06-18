@@ -107,16 +107,96 @@
     <div class="cap">
       <span class="cap-num">03</span>
       <h3>Instant latency</h3>
-      <p>Thinking was removed from the critical path. Answers arrive before understanding.</p>
+      <p>Thinking was removed from the critical path. <strong>Answers arrive before understanding.</strong></p>
     </div>
   </section>
 
+  <section id="how" class="how">
+    <div class="eyebrow"><span class="rule"></span> UNDER THE HOOD &middot; FOR THE CURIOUS</div>
+    <h2 class="how-title">How this model was <em>trained</em></h2>
+    <p class="how-intro">
+      SLM 4096 is a real (tiny) GPT, built to be fully understandable. It does one
+      thing — predict the next character — and it learned it from exactly one page of
+      memory. Here is the entire recipe, no hand-waving.
+    </p>
+
+    <div class="how-grid">
+      <div class="how-col">
+        <h3 class="how-h">The recipe</h3>
+        <ol class="how-steps">
+          <li><b>Tokenize by character.</b> Every unique character in the corpus
+            becomes a number — 54 in total. No fancy sub-word tokenizer.</li>
+          <li><b>Predict the next character.</b> We feed the model 128 characters and
+            ask it to guess character 129, over and over.</li>
+          <li><b>Measure surprise.</b> Cross-entropy loss scores how wrong each guess
+            was. A clueless model scores ln(54) ≈ 3.99.</li>
+          <li><b>Nudge the weights.</b> AdamW adjusts all 211,712 parameters to reduce
+            that loss. Repeat 3,000 times — a few seconds on a laptop CPU.</li>
+          <li><b>Memorize, on purpose.</b> With only 4 KB of data the model overfits
+            and learns the page by heart. In a real LLM that's a bug; here it's the
+            whole joke.</li>
+        </ol>
+      </div>
+
+      <div class="how-col">
+        <h3 class="how-h">The spec</h3>
+        <table class="spec">
+          <tr><td>Training data</td><td>4,096 bytes (one page of RAM)</td></tr>
+          <tr><td>Vocabulary</td><td>54 characters</td></tr>
+          <tr><td>Context window</td><td>128 characters</td></tr>
+          <tr><td>Layers</td><td>4 transformer blocks</td></tr>
+          <tr><td>Attention heads</td><td>4</td></tr>
+          <tr><td>Embedding width (d)</td><td>64</td></tr>
+          <tr><td>Parameters</td><td>211,712</td></tr>
+          <tr><td>Optimizer</td><td>AdamW, lr 3e-3</td></tr>
+          <tr><td>Training steps</td><td>3,000</td></tr>
+          <tr><td>Hardware</td><td>a laptop CPU, ~seconds</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="how-grid">
+      <div class="how-col">
+        <h3 class="how-h">Where 211,712 comes from</h3>
+        <pre class="code">d = 64  (embedding width)
+
+embeddings   : vocab·d + ctx·d
+             : 54·64 + 128·64        =  11,648
+4 blocks     : 4 × (12·d² + 13·d)    = 199,936
+final norm   : 2·d                   =     128
+head         : tied to embeddings    =       0
+-----------------------------------------------
+TOTAL                                = 211,712</pre>
+        <p class="how-note">Rule of thumb: <b>params ≈ layers × 12 × d²</b>. Widen d or
+          stack more layers and you walk from 211K to billions.</p>
+      </div>
+
+      <div class="how-col">
+        <h3 class="how-h">The loss curve (real run)</h3>
+        <pre class="code">iter     1 | loss 3.9995  ← random (ln 54)
+iter   500 | loss 1.1311
+iter  1000 | loss 0.3639
+iter  1500 | loss 0.2585
+iter  2000 | loss 0.1897
+iter  3000 | loss 0.1450  ← page memorized</pre>
+        <p class="how-note">Loss falling from ~3.99 to ~0.15 is the model learning its
+          4 KB by heart. That's why it answers everything in the same satirical voice.</p>
+      </div>
+    </div>
+
+    <p class="how-cta">
+      Full write-up — tokenizer, architecture, training loop, and how this compares to
+      ChatGPT — is in the
+      <a href="https://github.com/kunalkohli/SLM_4096" target="_blank" rel="noopener">GitHub repo</a>.
+    </p>
+  </section>
+
   <footer id="about" class="foot">
-    <p class="foot-big">SLM 4096 — smaller is the new bigger.</p>
+    <p class="foot-big">📄 SLM 4096 — smaller is the new bigger. 🧠</p>
     <p class="foot-small">
-      A 211,712-parameter char-level transformer trained on exactly 4096 bytes
-      (one page of RAM). A parody of AI launch culture. Any resemblance to a useful
-      product is coincidental. Not affiliated with any AI lab.
+      🤏 A 211,712-parameter char-level transformer trained on exactly 4096 bytes
+      (one page of RAM). 🎭 A parody of AI launch culture. Any resemblance to a useful
+      product is coincidental. Not affiliated with any AI lab. ✨
     </p>
   </footer>
 

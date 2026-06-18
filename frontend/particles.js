@@ -1,6 +1,6 @@
 /*
  * SLM 4096 - cursor-reactive particle field.
- * Thousands of dots rest in the shape of "4096", drift gently, and scatter
+ * Thousands of dots rest in the shape of "SLM", drift gently, and scatter
  * away from the cursor, then ease back. Vanilla canvas, no libraries.
  */
 (function () {
@@ -38,8 +38,8 @@
     off.height = Math.floor(H);
     const octx = off.getContext("2d");
 
-    // fit "4096" to ~78% of the panel width
-    const text = "4096";
+    // fit "SLM" to ~78% of the panel width
+    const text = "SLM";
     let fontSize = Math.floor(H * 0.42);
     octx.font = `700 ${fontSize}px Arial, sans-serif`;
     let tw = octx.measureText(text).width;

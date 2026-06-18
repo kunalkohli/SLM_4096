@@ -306,6 +306,98 @@ body {
 }
 .cap p { color: var(--ink-soft); font-size: 16px; line-height: 1.5; margin: 0; }
 
+/* ---------- caps emphasis ---------- */
+.cap p strong { color: var(--ink); font-weight: 600; }
+
+/* ---------- how it was trained ---------- */
+.how {
+  padding: 84px 48px;
+  border-top: 1px solid var(--rule);
+}
+.how-title {
+  font-size: clamp(34px, 5vw, 64px);
+  font-weight: 600;
+  letter-spacing: -1px;
+  margin: 16px 0 18px;
+}
+.how-title em { font-style: italic; color: var(--accent); font-weight: 400; }
+.how-intro {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 720px;
+  margin: 0 0 48px;
+}
+.how-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  margin-bottom: 48px;
+  max-width: 1040px;
+}
+.how-h {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+}
+.how-steps {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.how-steps li { margin-bottom: 12px; }
+.how-steps b { color: var(--ink); font-weight: 600; }
+
+.spec {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+.spec td { padding: 9px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.spec td:first-child { color: var(--ink-soft); letter-spacing: 0.5px; width: 48%; }
+.spec td:last-child { color: var(--ink); text-align: right; }
+
+.code {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.6;
+  background: var(--cream-2);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 18px 20px;
+  margin: 0 0 16px;
+  overflow-x: auto;
+  color: var(--ink);
+  white-space: pre;
+}
+.how-note {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.how-note b { color: var(--ink); font-weight: 600; }
+.how-cta {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--rule);
+  padding-top: 26px;
+  max-width: 1040px;
+}
+.how-cta a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
+.how-cta a:hover { color: var(--ink); border-color: var(--ink); }
+
 /* ---------- footer ---------- */
 .foot { padding: 80px 48px 100px; max-width: 880px; }
 .foot-big {
@@ -334,8 +426,9 @@ body {
     min-height: auto;
   }
   .hero-art { height: 360px; min-height: 320px; order: -1; }
-  .try, .foot { padding: 54px 22px; }
+  .try, .foot, .how { padding: 54px 22px; }
   .caps { grid-template-columns: 1fr; }
+  .how-grid { grid-template-columns: 1fr; gap: 36px; }
   .stats { gap: 28px; flex-wrap: wrap; }
   .chat { flex-direction: column; }
   .btn-ask { padding: 16px; }
