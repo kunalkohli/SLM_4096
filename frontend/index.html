@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SLM 4096 — the Small Language Model</title>
+  <meta name="description" content="Introducing SLM 4096: a Small Language Model trained on exactly one page of memory (4096 bytes). Confidently wrong, web scale, proudly under-informed." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="brand"><span class="ast">&#10038;</span> SLM <em>4096</em></div>
+    <nav class="links">
+      <a href="#try">WHAT'S NEW</a>
+      <a href="#capabilities">CAPABILITIES</a>
+      <a href="#try">API</a>
+      <a href="#about">ABOUT</a>
+    </nav>
+    <a class="btn-pill" href="#try">TRY THE SLM</a>
+  </header>
+
+  <main class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="rule"></span> SLM &middot; PLATE NO. I &middot; 2026</div>
+      <h1 class="title">
+        <span class="intro">Introducing</span>
+        <span class="word">SLM</span>
+        <span class="word accent italic">4096</span>
+      </h1>
+      <p class="subhead">
+        A new tier below nano — the least informed model we have ever shipped.
+        Built for thoughts that fit in a single page of memory, not turns.
+      </p>
+      <div class="stats">
+        <div class="stat">
+          <span class="k">TRAINING DATA</span>
+          <span class="v" id="stat-bytes">4096 bytes</span>
+        </div>
+        <div class="stat">
+          <span class="k">PARAMETERS</span>
+          <span class="v" id="stat-params">211K</span>
+        </div>
+        <div class="stat">
+          <span class="k">THINKING</span>
+          <span class="v">None</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <canvas id="particles" aria-hidden="true"></canvas>
+      <span class="art-caption">move your cursor</span>
+    </div>
+  </main>
+
+  <section id="try" class="try">
+    <div class="eyebrow"><span class="rule"></span> LIVE DEMO &middot; RUNS ON ONE PAGE OF RAM</div>
+    <h2 class="try-title">Ask it <em>anything.</em></h2>
+    <p class="try-sub">It will answer using all 4096 bytes it knows. Accuracy not included.</p>
+
+    <form id="chat-form" class="chat">
+      <input
+        id="question"
+        class="chat-input"
+        type="text"
+        autocomplete="off"
+        maxlength="160"
+        placeholder="e.g. What is the future of AI?"
+      />
+      <button id="ask-btn" class="btn-ask" type="submit">ASK</button>
+    </form>
+
+    <div class="temp-row">
+      <label for="temp">CREATIVITY</label>
+      <input id="temp" type="range" min="0.3" max="1.6" step="0.1" value="0.8" />
+      <span id="temp-val">0.8</span>
+      <span class="temp-hint">(higher = more confidently wrong)</span>
+    </div>
+
+    <div id="answer" class="answer" aria-live="polite">
+      <span class="answer-label">A:</span>
+      <span id="answer-text" class="answer-text muted">awaiting your question…</span>
+    </div>
+
+    <div class="suggestions" id="suggestions">
+      <button type="button" class="chip">Are you AGI?</button>
+      <button type="button" class="chip">Can you replace my team?</button>
+      <button type="button" class="chip">What is your moat?</button>
+      <button type="button" class="chip">Is it secure?</button>
+    </div>
+  </section>
+
+  <section id="capabilities" class="caps">
+    <div class="cap">
+      <span class="cap-num">01</span>
+      <h3>Web scale ignorance</h3>
+      <p>Deduplicated the entire internet down to one good paragraph, then trained on that.</p>
+    </div>
+    <div class="cap">
+      <span class="cap-num">02</span>
+      <h3>Zero-trust by design</h3>
+      <p>The ultimate air gap is knowing nothing. Nothing to leak, nothing to learn.</p>
+    </div>
+    <div class="cap">
+      <span class="cap-num">03</span>
+      <h3>Instant latency</h3>
+      <p>Thinking was removed from the critical path. Answers arrive before understanding.</p>
+    </div>
+  </section>
+
+  <footer id="about" class="foot">
+    <p class="foot-big">SLM 4096 — smaller is the new bigger.</p>
+    <p class="foot-small">
+      A 211,712-parameter char-level transformer trained on exactly 4096 bytes
+      (one page of RAM). A parody of AI launch culture. Any resemblance to a useful
+      product is coincidental. Not affiliated with any AI lab.
+    </p>
+  </footer>
+
+  <script src="/particles.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
